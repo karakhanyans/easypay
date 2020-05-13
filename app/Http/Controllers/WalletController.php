@@ -119,7 +119,7 @@ class WalletController extends Controller
         $wallet->save();
         // Logging transaction to database
         transaction(Transaction::SENT, Auth::id(), $receiverWallet->user->id, $wallet->id, $request->amount);
-        transaction(Transaction::RECEIVED, $receiverWallet->user->id, Auth::id(), $receiverWallet->id, $request->amount);
+        transaction(Transaction::RECEIVED, $receiverWallet->user->id, Auth::id(), $receiverWallet->id, $receiverAmount);
 
         return redirect()->route('wallets.index')->withStatus($request->amount . ' '  .$wallet->currency->name . ' sent to ' . $receiverWallet->user->name . ' ' . $receiverWallet->currency->name . ' balance');
     }

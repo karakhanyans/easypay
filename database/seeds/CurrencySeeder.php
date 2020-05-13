@@ -15,7 +15,7 @@ class CurrencySeeder extends Seeder
             ['name' => 'AMD'],
             ['name' => 'EUR'],
             ['name' => 'RUB'],
-            ['name' => 'GBR'],
+            ['name' => 'GBP'],
         ];
         \App\Models\Currency::insert($currencies);
         \App\Models\Currency::all()->each(function($currency){
