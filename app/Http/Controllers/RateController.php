@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RateRequest;
 use App\Models\Currency;
 use App\Models\Rate;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class RateController extends Controller
 {
@@ -20,7 +18,7 @@ class RateController extends Controller
         $todayCurrencies = Currency::with('rate')->get();
         $currencies = Currency::all();
         // Get previous days rates
-        $rates = Rate::where('date', '!=', date('Y-m-d'))->latest()->get()->groupBy('date');
+        $rates = Rate::where('date', '!=', date('Y-m-d'))->orderByDesc('date')->get()->groupBy('date');
 
         return view('rates.index', compact('todayCurrencies', 'currencies', 'rates'));
     }
