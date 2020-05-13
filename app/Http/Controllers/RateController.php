@@ -49,7 +49,7 @@ class RateController extends Controller
         // If yes, getting object to update it, if not just filling new one
         $rate = Rate::where([
             'currency_id' => $request->get('currency_id'),
-            'date' => date('Y-m-d')
+            'date' => $request->get('date')
         ])->firstOrNew();
         $rate = $rate->fill($request->only('value', 'date'));
         $rate->currency()->associate($currency);
